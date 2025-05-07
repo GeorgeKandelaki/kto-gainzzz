@@ -1,0 +1,26 @@
+{
+  "name": "kto-gainzzz",
+  "version": "1.0.0",
+  "description": "Application for keeping track of your workout sessions (Sets, Reps and Weights).",
+  "homepage": "https://github.com/GeorgeKandelaki/kto-gainzzz#readme",
+  "bugs": {
+    "url": "https://github.com/GeorgeKandelaki/kto-gainzzz/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgeKandelaki/kto-gainzzz.git"
+  },
+  "license": "ISC",
+  "author": "George Kandelaki",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.1"
+  }
+}
