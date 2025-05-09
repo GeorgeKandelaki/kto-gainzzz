@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
+const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 
 const userSchema = new mongoose.Schema({
 	name: {
@@ -8,6 +11,10 @@ const userSchema = new mongoose.Schema({
 		trim: true,
 		min: [4, "Name can't be less than 4 characters!"],
 		max: [30, "Name can't be more than 4 characters!"],
+	},
+	avatar: {
+		type: String,
+		default: "default_pfp.png",
 	},
 	password: {
 		type: String,
@@ -30,6 +37,25 @@ const userSchema = new mongoose.Schema({
 	workouts: [{ type: mongoose.Schema.ObjectId, ref: "Exercise" }],
 	role: { type: String, enum: { values: ["user", "admin"], message: `{VALUE} is not supported` } },
 });
+
+userSchema.set("toJSON", { virtuals: true });
+userSchema.set("toObject", { virtuals: true });
+
+// Hash the Password
+userSchema.pre("save", async function (next) {
+	if (!this.isModified("password")) return next();
+
+	this.password = await bcrypt.hash(this.password, 12);
+
+	this.passwordConfirm = undefined;
+
+	return next();
+});
+
+// Create a method on every User document to check if the password is right
+userSchema.methods.comparePassword = async function (candidatePassword, userPassword) {
+	return await bcrypt.compare(candidatePassword, userPassword);
+};
 
 const User = mongoose.model("User", userSchema);
 
