@@ -30,6 +30,7 @@
 		"pug": "^3.0.3"
 	},
 	"devDependencies": {
+		"eslint": "^9.26.0",
 		"parcel": "^2.14.4",
 		"sass": "^1.87.0"
 	}
