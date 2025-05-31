@@ -1,0 +1,73 @@
+:root {
+	--light-dark: #222322;
+	--main-dark: #1c1c1c;
+	--white: #fff;
+	--border: #2e2c2d;
+	--item: #252525;
+}
+
+.workout {
+	max-width: 35rem;
+	max-height: 25rem;
+	width: 100%;
+	color: var(--white);
+	background-color: var(--item);
+	border: 1px solid var(--border);
+	border-radius: 1.5rem;
+	padding: 1.5rem 2rem;
+
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.workoutName {
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	word-break: break-word;
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+}
+
+.workoutCreatedAt {
+	font-size: 1.2rem;
+	margin-bottom: 1.3rem;
+	display: inline-block;
+}
+
+.workoutDescription {
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	word-break: break-word;
+	font-size: 1.4rem;
+	margin-bottom: auto;
+}
+
+.workoutItemsCount {
+	font-size: 1.2rem;
+}
+
+.workoutHeader {
+	display: flex;
+	justify-content: space-between;
+}
+
+.workoutFooter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.3rem;
+	margin-top: 1.5rem;
+}
+
+.link {
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--white);
+	transition: transform 0.3s;
+	font-size: 1.4rem;
+
+	&:hover {
+		transform: translateX(5%);
+	}
+}

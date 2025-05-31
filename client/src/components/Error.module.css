@@ -1,0 +1,35 @@
+.message {
+	padding: 1.3rem 1.5rem;
+	border-radius: 0.8rem;
+	border: 1px solid #2a2a2a;
+	font-size: 1.4rem;
+	color: white;
+
+	position: absolute;
+	top: 10%;
+	right: 0;
+
+	transform: translateX(-3%);
+}
+
+.messageRed {
+	background-color: red;
+}
+
+.messageGreen {
+	background-color: greenyellow;
+}
+
+@keyframes moveIn {
+	0% {
+		transform: translateX(00%);
+	}
+
+	50% {
+		transform: translateX(-15%);
+	}
+
+	100% {
+		transform: translateX(-3%);
+	}
+}

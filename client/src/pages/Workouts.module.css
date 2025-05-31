@@ -1,0 +1,31 @@
+:root {
+	--light-dark: #222322;
+	--main-dark: #1c1c1c;
+	--white: #fff;
+	--border: #2a2a2a;
+}
+
+.workoutsContainer {
+	width: 100%;
+	height: 100vh;
+	padding: 0.5rem 1rem;
+	background-color: var(--main-dark);
+}
+
+.workoutsHeading {
+	color: var(--white);
+	font-size: 4rem;
+}
+
+.workoutsHeader {
+	margin: 3.2rem;
+}
+
+.workouts {
+	width: 100%;
+
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 2.4rem;
+}

@@ -1,0 +1,10 @@
+.btnBack {
+	background-color: white !important;
+	color: black !important;
+	transform: all 0.3s !important;
+
+	&:hover {
+		background-color: #222322 !important;
+		color: white !important;
+	}
+}

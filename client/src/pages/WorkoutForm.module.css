@@ -1,0 +1,57 @@
+.main {
+	color: white;
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.wrapper {
+	max-width: 50rem;
+	width: 100%;
+
+	border-radius: 1rem;
+	border: 1px solid white;
+	padding: 1.8rem 2rem;
+}
+
+.heading {
+	margin-bottom: 3.2rem;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.fieldContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.btnContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 2rem;
+}
+
+.description {
+	padding: 1.3rem 1.5rem;
+	font-size: 1.4rem;
+	background-color: var(--light-dark);
+	color: #fff;
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	resize: vertical;
+	min-height: 15rem;
+	max-height: 40rem;
+
+	&:focus {
+		outline: 1px solid lightyellow;
+	}
+}

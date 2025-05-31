@@ -34,8 +34,9 @@ const userSchema = new mongoose.Schema({
 			message: "Passwords are not the same",
 		},
 	},
-	workouts: [{ type: mongoose.Schema.ObjectId, ref: "Exercise" }],
-	role: { type: String, enum: { values: ["user", "admin"], message: `{VALUE} is not supported` } },
+	// workouts: [{ type: mongoose.Schema.ObjectId, ref: "Exercise" }],
+	role: { type: String, default: "user", enum: { values: ["user", "admin"], message: `{VALUE} is not supported` } },
+	createdAt: { type: Date, default: new Date() },
 });
 
 userSchema.set("toJSON", { virtuals: true });
