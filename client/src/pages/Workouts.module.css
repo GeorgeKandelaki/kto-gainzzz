@@ -8,7 +8,7 @@
 .workoutsContainer {
 	width: 100%;
 	height: 100vh;
-	padding: 0.5rem 1rem;
+	padding: 1rem 1.5rem;
 	background-color: var(--main-dark);
 }
 
@@ -18,7 +18,11 @@
 }
 
 .workoutsHeader {
-	margin: 3.2rem;
+	margin: 3.2rem 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .workouts {
@@ -28,4 +32,56 @@
 	justify-content: space-between;
 	flex-wrap: wrap;
 	gap: 2.4rem;
+}
+
+.image {
+	cursor: pointer;
+	width: 2.4rem;
+	height: 2.4rem;
+}
+
+.workoutsSearchWrapper {
+	display: flex;
+	align-items: center;
+	position: relative;
+
+	& button {
+		position: absolute;
+		right: 3%;
+		z-index: 1000;
+	}
+}
+
+.workoutsSearch {
+	width: 35rem;
+
+	padding: 1.3rem 4rem 1.3rem 1.5rem;
+	font-size: 1.4rem;
+	background-color: var(--light-dark);
+	color: #fff;
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	transition: width 0.3s;
+
+	&:focus {
+		width: 45rem;
+		outline: 1px solid lightyellow;
+	}
+}
+
+.btnCreate {
+	text-decoration: none;
+}
+
+.btnSearch {
+	background-color: transparent;
+	border: none;
+}
+
+.errorMsg {
+	color: var(--white);
+	font-size: 3rem;
+	font-weight: 600;
+	margin-top: 6.4rem;
+	text-align: center;
 }

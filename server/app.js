@@ -8,6 +8,7 @@ const hpp = require("hpp");
 const rateLimit = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
 const compression = require("compression");
+const qs = require("qs");
 
 const exerciseRouter = require("./routes/exerciseRoutes");
 const workoutRouter = require("./routes/workoutRoutes");
@@ -22,22 +23,32 @@ const app = express();
 // app.enable("trust proxy");
 
 // Implement CORS
+const allowedOrigins = ["http://localhost:3000", "http://95.104.13.159:3000"];
 app.use(
 	cors({
-		origin: "http://localhost:3000", // your frontend URL
-		credentials: true, // 🔥 this is required!
+		origin: function (origin, callback) {
+			try {
+				if (!origin) return callback(null, true);
+				if (allowedOrigins.includes(origin.toLowerCase())) {
+					return callback(null, true);
+				}
+				callback(new Error("Not allowed by CORS"));
+			} catch (err) {
+				callback(err);
+			}
+		},
+		credentials: true,
 	})
 );
-// app.options("*", cors()); <- Doesn't work for some reason
-
-app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
 
 // Serve Static Files
 app.use(express.static(path.join(__dirname, "public")));
 
 // Parse Cookies
 app.use(cookieParser());
+
+// Parse Query String
+app.set("query parser", (str) => qs.parse(str));
 
 // Limit Requests from same API
 const limiter = rateLimit({

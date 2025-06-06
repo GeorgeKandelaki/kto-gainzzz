@@ -4,7 +4,12 @@ const AppError = require("../utils/appError");
 const APIFeatures = require("../utils/apiFeatures");
 
 exports.getAll = catchAsync(async function (req, res, next) {
-	let workouts = new APIFeatures(Workout.find({ user: req.user.id }), req.query).paginate();
+	const query = { user: req.user.id };
+	if (req.query.s) query.$text = { $search: req.query.s };
+	// console.log("QUERY OBJ:", query, "\n", "QUERY STRING:", req.query);
+	// console.log("COOKIES OBJ:", req.cookies, "\n", "HEADERS OBJ:", req.headers);
+
+	let workouts = new APIFeatures(Workout.find(query), req.query).paginate();
 
 	workouts = await workouts.query;
 

@@ -37,6 +37,7 @@ function ExerciseForm({ type }) {
 	useEffect(
 		function () {
 			if (type !== "update" || !workout) return;
+
 			const foundExercise = workout.exercises.find((ex) => ex._id === params.exerciseId);
 			if (!foundExercise) return;
 

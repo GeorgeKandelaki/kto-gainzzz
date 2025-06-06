@@ -10,7 +10,12 @@ const initialState = {
 	isLoading: true,
 };
 
-const BASE_URL = "http://localhost:5000/api/v1";
+const DOMAIN = {
+	production: "95.104.13.159",
+	development: "localhost",
+};
+
+const BASE_URL = `http://${DOMAIN.production}:5000/api/v1`;
 
 function reducer(state, action) {
 	switch (action.type) {
@@ -66,9 +71,11 @@ function UserProvider({ children }) {
 				withCredentials: true,
 			});
 
-			if (res.statusText !== "OK") return;
+			if (res.statusText !== "OK") return false;
 
 			dispatch({ type: "user/loaded", payload: res.data.data.user });
+
+			return true;
 		} catch (err) {
 			error("Red", err.response.data.message);
 		} finally {
@@ -90,9 +97,10 @@ function UserProvider({ children }) {
 				withCredentials: true,
 			});
 
-			if (res.statusText !== "OK") return;
+			if (res.statusText !== "OK") return false;
 
 			dispatch({ type: "user/loaded", payload: res.data.data.user });
+			return true;
 		} catch (err) {
 			error("Red", err.response.data.message);
 		} finally {

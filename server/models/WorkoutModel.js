@@ -22,7 +22,7 @@ const workoutSchema = new mongoose.Schema({
 	createdAt: { type: Date, default: new Date() },
 });
 
-workoutSchema.index({ user: 1 });
+workoutSchema.index({ user: 1, name: "text" });
 
 workoutSchema.pre("findOne", function (next) {
 	this.populate({ path: "exercises" });

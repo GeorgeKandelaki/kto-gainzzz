@@ -28,8 +28,26 @@
 	font-size: 1.6rem;
 }
 
+.image {
+	width: 2rem;
+	height: 2rem;
+}
+
 .exerciseInfo {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+}
+
+.exerciseHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;
+}
+
+.exerciseActions {
+	display: flex;
+	gap: 0.5rem;
 	align-items: center;
 }

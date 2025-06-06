@@ -8,6 +8,7 @@
 .workout {
 	color: var(--white);
 	padding: 1.5rem 2rem;
+	margin-top: 6.4rem;
 
 	display: flex;
 	justify-content: center;
@@ -27,7 +28,7 @@
 
 .workoutHeader {
 	padding-bottom: 2rem;
-	margin-bottom: 3.2rem;
+	margin-bottom: 2rem;
 	border-bottom: 1px solid #c9b8b8;
 	width: 99%;
 }
@@ -85,4 +86,27 @@
 	align-items: center;
 	gap: 0.5rem;
 	margin-top: 0.8rem;
+}
+
+.btnAdd {
+	text-decoration: none;
+	color: white;
+	margin-bottom: 1rem;
+	margin-left: auto;
+
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	& .image {
+		height: 2rem;
+		width: 2rem;
+	}
+}
+
+.btnBack {
+	position: absolute;
+	left: 12%;
+
+	align-self: flex-start;
 }

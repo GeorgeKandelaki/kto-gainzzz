@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./Modal.module.css";
 
 function Modal({
@@ -7,13 +7,16 @@ function Modal({
 	heading = "Are You Sure?",
 	description = "Are you sure you want to do this action? By clicking YES you will agree without being able to undo the action.",
 }) {
-	const [show, setShow] = useState(true);
+	// const [show, setShow] = useState(true);
+
+	const modal = document.querySelector(`.${styles.modal}`);
+	if (modal) modal.remove();
 
 	useEffect(
 		function () {
 			function handleKeyDown(e) {
 				if (e.key === "Escape") {
-					setShow(false);
+					// setShow(false);
 					onClickNo?.(); // optional chaining = clean
 				}
 			}
@@ -25,7 +28,50 @@ function Modal({
 		[onClickNo]
 	);
 
-	return show ? (
+	// return show ? (
+	// 	<>
+	// 		<div
+	// 			className={styles.modal}
+	// 			role="dialog"
+	// 			aria-modal="true"
+	// 			aria-labelledby="modal-heading"
+	// 			aria-describedby="modal-description"
+	// 		>
+	// 			<h3 id="modal-heading" className={styles.modalHeading}>
+	// 				{heading}
+	// 			</h3>
+	// 			<p id="modal-description" className={styles.modalDescription}>
+	// 				{description}
+	// 			</p>
+
+	// 			<div className={styles.btns}>
+	// 				<button
+	// 					className={`btn ${styles.btnNo}`}
+	// 					onClick={() => {
+	// 						setShow(false);
+	// 						onClickNo?.();
+	// 					}}
+	// 				>
+	// 					NO
+	// 				</button>
+	// 				<button
+	// 					className={`btn ${styles.btnYes}`}
+	// 					onClick={() => {
+	// 						setShow(false);
+	// 						onClickYes?.();
+	// 					}}
+	// 				>
+	// 					YES
+	// 				</button>
+	// 			</div>
+	// 		</div>
+	// 		<div className={styles.overlay}></div>
+	// 	</>
+	// ) : (
+	// 	""
+	// );
+
+	return (
 		<>
 			<div
 				className={styles.modal}
@@ -45,7 +91,6 @@ function Modal({
 					<button
 						className={`btn ${styles.btnNo}`}
 						onClick={() => {
-							setShow(false);
 							onClickNo?.();
 						}}
 					>
@@ -54,7 +99,6 @@ function Modal({
 					<button
 						className={`btn ${styles.btnYes}`}
 						onClick={() => {
-							setShow(false);
 							onClickYes?.();
 						}}
 					>
@@ -64,8 +108,6 @@ function Modal({
 			</div>
 			<div className={styles.overlay}></div>
 		</>
-	) : (
-		""
 	);
 }
 

@@ -8,6 +8,7 @@ const router = express.Router();
 // Workout Routes
 router.use(authController.protect);
 router.route("/").get(workoutController.getAll).post(workoutController.setUser, workoutController.createOne);
+
 router
 	.route("/:id")
 	.get(workoutController.getOne)

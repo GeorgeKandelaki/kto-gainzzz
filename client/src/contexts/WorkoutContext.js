@@ -11,7 +11,12 @@ const initialState = {
 	exerciseIsLoading: false,
 };
 
-const BASE_URL = "http://localhost:5000/api/v1";
+const DOMAIN = {
+	production: "95.104.13.159",
+	development: "localhost",
+};
+
+const BASE_URL = `http://${DOMAIN.production}:5000/api/v1`;
 
 function reducer(state, action) {
 	switch (action.type) {
@@ -26,7 +31,7 @@ function reducer(state, action) {
 		case "workout/updated":
 			return {
 				...state,
-				workouts: state.workouts.filter((workout) => workout._id !== action.payload._id).push(action.payload),
+				workouts: [action.payload, ...state.workouts.filter((workout) => workout._id !== action.payload._id)],
 			};
 
 		case "exercise/created":
@@ -38,9 +43,21 @@ function reducer(state, action) {
 				},
 			};
 		case "exercise/updated":
-			return { ...state };
+			return {
+				...state,
+				currentWorkout: {
+					...state.currentWorkout,
+					exercises: [action.payload, ...state.currentWorkout.exercises.filter((ex) => ex._id !== action.payload._id)],
+				},
+			};
 		case "exercise/deleted":
-			return { ...state };
+			return {
+				...state,
+				currentWorkout: {
+					...state.currentWorkout,
+					exercises: state.currentWorkout.exercises.filter((ex) => ex._id !== action.payload),
+				},
+			};
 
 		case "loading":
 			return { ...state, isLoading: true };
@@ -73,6 +90,8 @@ function WorkoutsProvider({ children }) {
 			if (res.statusText !== "OK") return;
 
 			dispatch({ type: "workouts/loaded", payload: res.data.data.workouts });
+
+			return res.data.data.workouts;
 		} catch (err) {
 			error("Red", err.response.data.message);
 		} finally {
@@ -154,8 +173,7 @@ function WorkoutsProvider({ children }) {
 			dispatch({ type: "loading" });
 			const res = await axios({ url: `${BASE_URL}/workout/${id}`, method: "DELETE", withCredentials: true });
 
-			console.log(res);
-			if (res.statusText !== "Deleted") return;
+			if (res.statusText !== "No Content") return;
 
 			dispatch({ type: "workout/deleted" });
 		} catch (err) {
@@ -187,9 +205,20 @@ function WorkoutsProvider({ children }) {
 		}
 	}, []);
 
-	const deleteExercise = useCallback(async function deleteExercise(id) {
+	const deleteExercise = useCallback(async function deleteExercise(workoutId, exerciseId) {
 		try {
 			dispatch({ type: "exercise/loading" });
+
+			const res = await axios({
+				url: `${BASE_URL}/workout/${workoutId}/exercise/${exerciseId}`,
+				method: "DELETE",
+				withCredentials: true,
+			});
+
+			console.log(res);
+			if (res.statusText !== "No Content") return;
+
+			dispatch({ type: "exercise/deleted", payload: exerciseId });
 		} catch (err) {
 			error("Red", err.response.data.message);
 		} finally {
@@ -197,13 +226,53 @@ function WorkoutsProvider({ children }) {
 		}
 	}, []);
 
-	const updateExercise = useCallback(async function updateExercise(id, name, reps, sets, weight, metric, workoutId) {
+	const updateExercise = useCallback(async function updateExercise(
+		exerciseId,
+		name,
+		reps,
+		sets,
+		weight,
+		metric,
+		workoutId
+	) {
 		try {
 			dispatch({ type: "exercise/loading" });
+
+			const res = await axios({
+				url: `${BASE_URL}/workout/${workoutId}/exercise/${exerciseId}`,
+				method: "PATCH",
+				data: { name, reps, sets, weight, metric },
+				withCredentials: true,
+			});
+
+			if (res.statusText !== "OK") return;
+
+			dispatch({ type: "exercise/updated", payload: res.data.data.data });
+
+			return res.data.data.data;
 		} catch (err) {
 			error("Red", err.response.data.message);
 		} finally {
 			dispatch({ type: "exercise/hasLoaded" });
+		}
+	},
+	[]);
+
+	const searchWorkouts = useCallback(async function (search) {
+		try {
+			dispatch({ type: "loading" });
+
+			const res = await axios({ url: `${BASE_URL}/workout/?s=${search}`, method: "GET", withCredentials: true });
+
+			if (res.statusText !== "OK") return;
+
+			dispatch({ type: "workouts/loaded", payload: res.data.data.workouts });
+
+			return res.data.data.workouts;
+		} catch (err) {
+			error("Red", err.response.data.message);
+		} finally {
+			dispatch({ type: "loaded" });
 		}
 	}, []);
 
@@ -220,6 +289,7 @@ function WorkoutsProvider({ children }) {
 			createExercise,
 			updateExercise,
 			deleteExercise,
+			searchWorkouts,
 		}),
 		[
 			workouts,
@@ -233,6 +303,7 @@ function WorkoutsProvider({ children }) {
 			deleteExercise,
 			deleteWorkout,
 			createExercise,
+			searchWorkouts,
 		]
 	);
 

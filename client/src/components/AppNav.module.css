@@ -1,0 +1,54 @@
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-height: 15rem;
+
+	padding: 1rem;
+
+	& ul {
+		list-style: none;
+
+		display: flex;
+		align-items: center;
+		gap: 2.5rem;
+	}
+}
+
+.workoutsLink {
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--white);
+}
+
+.ctaLink {
+	text-decoration: none;
+	border-radius: 0.6rem;
+	border: 1px solid var(--border);
+	padding: 0.8rem 1.5rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+
+	display: inline-block;
+	transition: all 0.3s;
+
+	background-color: white !important;
+	color: black !important;
+
+	&:hover {
+		background-color: #222322 !important;
+		color: white !important;
+	}
+}
+
+.navLogo {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+
+	& p {
+		color: var(--white);
+		font-size: 3rem;
+		font-weight: 700;
+	}
+}

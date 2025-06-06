@@ -2,6 +2,7 @@ import styles from "./Workout.module.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useWorkouts } from "../contexts/WorkoutContext";
 import Spinner from "../components/Spinner";
+import BackButton from "../components/BackButton";
 import Exercise from "../components/Exercise";
 import { useEffect, useState } from "react";
 import { calculateDays } from "../utils/utils";
@@ -42,6 +43,7 @@ function Workout() {
 		<>
 			{show ? <Modal onClickNo={() => setShow(false)} onClickYes={() => handleDelete()} /> : ""}
 			<main className={styles.workout}>
+				<BackButton className={styles.btnBack}>Go Back</BackButton>
 				<div className={styles.workoutWrapper}>
 					<header className={styles.workoutHeader}>
 						<div className={styles.workoutHeaderName}>
@@ -71,7 +73,10 @@ function Workout() {
 
 						<p className={styles.workoutDescription}>{workout.description}</p>
 					</header>
-					<Link to={`/workouts/${workoutId}/exercise/create`}>Add Exercise +</Link>
+
+					<Link to={`/workouts/${workoutId}/exercise/create`} className={styles.btnAdd}>
+						Add Exercise <img src="/icons/icon_add.png" alt="add btn" className={styles.image} />
+					</Link>
 					<div className={styles.workoutExercises}>
 						{exercises.length ? (
 							exercises.map((exercise) => <Exercise exercise={exercise} key={exercise._id} />)
