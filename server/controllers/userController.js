@@ -1,6 +1,7 @@
 const User = require("../models/UserModel");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
+const { filterObj } = require("../utils/utils");
 
 exports.getMe = catchAsync(async function (req, res, next) {
 	const user = await User.findById(req.user.id).select("name avatar");
@@ -14,3 +15,10 @@ exports.getMe = catchAsync(async function (req, res, next) {
 		},
 	});
 });
+
+exports.updateMe = catchAsync(async function (req, res, next) {});
+
+exports.updatePassword = catchAsync(async function (req, res, next) {});
+
+exports.deleteMe = catchAsync(async function (req, res, next) {});
+z;

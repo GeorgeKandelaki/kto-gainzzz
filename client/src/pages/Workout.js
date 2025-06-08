@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { calculateDays } from "../utils/utils";
 
 import Modal from "../components/Modal";
+import AppNav from "../components/AppNav";
 
 function Workout() {
 	const { getWorkout, deleteWorkout, isLoading, currentWorkout: workout } = useWorkouts();
@@ -42,6 +43,7 @@ function Workout() {
 	return (
 		<>
 			{show ? <Modal onClickNo={() => setShow(false)} onClickYes={() => handleDelete()} /> : ""}
+			<AppNav />
 			<main className={styles.workout}>
 				<BackButton className={styles.btnBack}>Go Back</BackButton>
 				<div className={styles.workoutWrapper}>

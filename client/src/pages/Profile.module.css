@@ -1,0 +1,90 @@
+.profile {
+	display: flex;
+	justify-content: center;
+	margin: 3rem 0;
+}
+
+.profileSection {
+	max-width: 65rem;
+	width: 100%;
+	border: 1px solid var(--white);
+	border-radius: 1rem;
+	padding: 2rem 4rem;
+}
+
+.formImageName {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	margin-bottom: 3.2rem;
+
+	& button {
+		margin-left: auto;
+	}
+
+	& img {
+		border: 3px solid var(--white);
+		border-radius: 50%;
+		width: 20rem;
+		height: 20rem;
+	}
+
+	& .formImage {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+
+		& .formField {
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+.formPassword {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+	& button {
+		margin-left: auto;
+	}
+}
+
+.formField {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	& label,
+	input {
+		color: var(--white);
+	}
+}
+
+.accountActions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	margin-top: 3rem;
+}
+
+.btnDelete {
+	color: #fa5e55 !important;
+
+	&:hover {
+		border: 1px solid red !important;
+		color: var(--white) !important;
+		background-color: red !important;
+	}
+}
+
+.btnLogout {
+}
+
+.btnBack {
+	position: absolute;
+	left: 12%;
+
+	align-self: flex-start;
+}

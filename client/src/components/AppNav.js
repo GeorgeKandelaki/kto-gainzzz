@@ -1,6 +1,6 @@
 import styles from "./AppNav.module.css";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import Logo from "../components/Logo";
 import { useUser } from "../contexts/UserContext";
@@ -18,22 +18,27 @@ function AppNav() {
 				</p>
 			</div>
 
-			<ul>
-				<li>
-					<NavLink to="workouts" className={styles.workoutsLink}>
-						WORKOUTS
-					</NavLink>
-				</li>
-				{!user ? (
+			{!user ? (
+				<ul>
+					<li>
+						<NavLink to="workouts" className={styles.workoutsLink}>
+							WORKOUTS
+						</NavLink>
+					</li>
 					<li>
 						<NavLink to="login" className={styles.ctaLink}>
 							Login
 						</NavLink>
 					</li>
-				) : (
-					""
-				)}
-			</ul>
+				</ul>
+			) : (
+				<div className={styles.profile}>
+					<Link to="/profile">
+						<img src={user.avatar} alt="User profile" />
+					</Link>
+					<p>{user.name.split(" ")[0].toUpperCase()}</p>
+				</div>
+			)}
 		</nav>
 	);
 }

@@ -53,6 +53,8 @@ userSchema.pre("save", async function (next) {
 	return next();
 });
 
+userSchema.pre("deleteOne", async function (next) {});
+
 // Create a method on every User document to check if the password is right
 userSchema.methods.comparePassword = async function (candidatePassword, userPassword) {
 	return await bcrypt.compare(candidatePassword, userPassword);

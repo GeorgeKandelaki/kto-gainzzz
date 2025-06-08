@@ -6,6 +6,7 @@ import Workout from "./pages/Workout";
 import Homepage from "./pages/Homepage";
 import WorkoutForm from "./pages/WorkoutForm";
 import ExerciseForm from "./pages/ExerciseForm";
+import Profile from "./pages/Profile";
 
 import { useUser } from "./contexts/UserContext";
 
@@ -40,9 +41,10 @@ function App() {
 
 						<Route path="workouts/:workoutId/exercise/create" element={<ExerciseForm type={"create"} />} />
 						<Route path="workouts/:workoutId/exercise/:exerciseId/update" element={<ExerciseForm type={"update"} />} />
+						<Route path="profile" element={<Profile />} />
 					</Route>
 
-					<Route path="*" element={<h1>This Route Doesn't Exist! 404</h1>} />
+					<Route path="*" element={<h1 style={{ color: "#fff" }}>This Route Doesn't Exist! 404</h1>} />
 				</Routes>
 			</WorkoutsProvider>
 		</BrowserRouter>
