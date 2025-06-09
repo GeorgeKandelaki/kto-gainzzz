@@ -21,11 +21,6 @@ function AppNav() {
 			{!user ? (
 				<ul>
 					<li>
-						<NavLink to="workouts" className={styles.workoutsLink}>
-							WORKOUTS
-						</NavLink>
-					</li>
-					<li>
 						<NavLink to="login" className={styles.ctaLink}>
 							Login
 						</NavLink>

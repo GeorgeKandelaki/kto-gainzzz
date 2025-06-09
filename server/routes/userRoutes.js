@@ -13,8 +13,8 @@ router.use(authController.protect);
 
 router.get("/me", userController.getMe);
 router.get("/logout", authController.logout);
-router.post("/updateMe", userController.updateMe);
-router.post("/updatePassword", userController.updatePassword);
+router.patch("/updateMe", userController.uploadUserPhoto, userController.resizeUserPhoto, userController.updateMe);
+router.patch("/updatePassword", userController.updatePassword);
 router.delete("/deleteMe", userController.deleteMe);
 
 module.exports = router;

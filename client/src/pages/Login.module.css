@@ -5,7 +5,7 @@
 }
 
 .login {
-	height: 100vh;
+	height: calc(100vh - 15rem);
 	display: flex;
 	justify-content: center;
 	align-items: center;

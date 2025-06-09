@@ -12,7 +12,7 @@ function Homepage() {
 			<Header />
 
 			<section>
-				<h1>Make tracking you GYM GAINZZZ satisfying.</h1>
+				<h1>Make tracking your GYM GAINZZZ satisfying.</h1>
 				<h2>Stay focused on your grind, our workout tracker keeps it safe, smooth, and stress-free.</h2>
 
 				<Link to={!user ? "/login" : "/workouts"} className={styles.cta}>

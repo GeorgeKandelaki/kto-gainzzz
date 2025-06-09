@@ -3,6 +3,8 @@ const validator = require("validator");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
+const Workout = require("./WorkoutModel");
+
 const userSchema = new mongoose.Schema({
 	name: {
 		type: String,
@@ -14,7 +16,7 @@ const userSchema = new mongoose.Schema({
 	},
 	avatar: {
 		type: String,
-		default: "default_pfp.png",
+		default: "http://95.104.13.159:5000/users/default.jpg",
 	},
 	password: {
 		type: String,
@@ -53,7 +55,11 @@ userSchema.pre("save", async function (next) {
 	return next();
 });
 
-userSchema.pre("deleteOne", async function (next) {});
+userSchema.post("findOneAndDelete", async function (doc) {
+	if (doc) {
+		await Workout.deleteMany({ user: doc._id });
+	}
+});
 
 // Create a method on every User document to check if the password is right
 userSchema.methods.comparePassword = async function (candidatePassword, userPassword) {

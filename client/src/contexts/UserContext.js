@@ -23,6 +23,14 @@ function reducer(state, action) {
 			return { ...state, user: action.payload, isAuthenticated: true };
 		case "user/logout":
 			return initialState;
+		case "user/updated":
+			return {
+				...state,
+				user: { ...state.user, name: action.payload.name || state.name, avatar: action.payload.avatar || state.avatar },
+			};
+		case "user/deleted":
+			return initialState;
+
 		case "loading":
 			return { ...state, isLoading: true };
 		case "loaded":
@@ -134,7 +142,9 @@ function UserProvider({ children }) {
 
 			const res = await axios({ url: `${BASE_URL}/user/deleteMe`, method: "DELETE", withCredentials: true });
 
-			if (!res.statusText !== "Deleted") return;
+			if (res.statusText !== "Deleted") return;
+
+			dispatch({ type: "user/deleted" });
 		} catch (err) {
 			error("Red", err.response.data.message);
 		} finally {
@@ -142,18 +152,20 @@ function UserProvider({ children }) {
 		}
 	}, []);
 
-	const updateMe = useCallback(async function (name, avatar) {
+	const updateMe = useCallback(async function (obj) {
 		try {
 			dispatch({ type: "loading" });
 
 			const res = await axios({
 				url: `${BASE_URL}/user/updateMe`,
-				method: "POST",
-				data: { name, avatar },
+				method: "PATCH",
+				data: obj,
 				withCredentials: true,
 			});
 
-			if (!res.statusText !== "OK") return;
+			if (res.statusText !== "OK") return;
+
+			dispatch({ type: "user/updated", payload: { name: res.data.data.user.name, avatar: res.data.data.user.avatar } });
 		} catch (err) {
 			error("Red", err.response.data.message);
 		} finally {
@@ -167,12 +179,12 @@ function UserProvider({ children }) {
 
 			const res = await axios({
 				url: `${BASE_URL}/user/updatePassword`,
-				method: "POST",
+				method: "PATCH",
 				data: { currentPassword, password, passwordConfirm },
 				withCredentials: true,
 			});
 
-			if (!res.statusText !== "OK") return;
+			if (res.statusText !== "OK") return;
 		} catch (err) {
 			error("Red", err.response.data.message);
 		} finally {
