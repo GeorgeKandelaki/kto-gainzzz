@@ -10,10 +10,11 @@ router.post("/login", authController.login);
 
 // All routes defined *after* this require authentication
 router.use(authController.protect);
+
 router.get("/me", userController.getMe);
+router.get("/logout", authController.logout);
 router.post("/updateMe", userController.updateMe);
 router.post("/updatePassword", userController.updatePassword);
 router.delete("/deleteMe", userController.deleteMe);
-router.get("/logout", authController.logout);
 
 module.exports = router;

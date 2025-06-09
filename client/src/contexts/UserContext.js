@@ -128,9 +128,72 @@ function UserProvider({ children }) {
 		}
 	}, []);
 
+	const deleteMe = useCallback(async function () {
+		try {
+			dispatch({ type: "loading" });
+
+			const res = await axios({ url: `${BASE_URL}/user/deleteMe`, method: "DELETE", withCredentials: true });
+
+			if (!res.statusText !== "Deleted") return;
+		} catch (err) {
+			error("Red", err.response.data.message);
+		} finally {
+			dispatch({ type: "loaded" });
+		}
+	}, []);
+
+	const updateMe = useCallback(async function (name, avatar) {
+		try {
+			dispatch({ type: "loading" });
+
+			const res = await axios({
+				url: `${BASE_URL}/user/updateMe`,
+				method: "POST",
+				data: { name, avatar },
+				withCredentials: true,
+			});
+
+			if (!res.statusText !== "OK") return;
+		} catch (err) {
+			error("Red", err.response.data.message);
+		} finally {
+			dispatch({ type: "loaded" });
+		}
+	}, []);
+
+	const updatePassword = useCallback(async function (currentPassword, password, passwordConfirm) {
+		try {
+			dispatch({ type: "loading" });
+
+			const res = await axios({
+				url: `${BASE_URL}/user/updatePassword`,
+				method: "POST",
+				data: { currentPassword, password, passwordConfirm },
+				withCredentials: true,
+			});
+
+			if (!res.statusText !== "OK") return;
+		} catch (err) {
+			error("Red", err.response.data.message);
+		} finally {
+			dispatch({ type: "loaded" });
+		}
+	}, []);
+
 	const contextValue = useMemo(
-		() => ({ user, isAuthenticated, getUser, loginUser, signupUser, logoutUser, isLoading }),
-		[getUser, isAuthenticated, isLoading, loginUser, logoutUser, signupUser, user]
+		() => ({
+			user,
+			isAuthenticated,
+			getUser,
+			loginUser,
+			signupUser,
+			logoutUser,
+			isLoading,
+			deleteMe,
+			updateMe,
+			updatePassword,
+		}),
+		[getUser, isAuthenticated, isLoading, loginUser, logoutUser, signupUser, user, deleteMe, updateMe, updatePassword]
 	);
 
 	return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
