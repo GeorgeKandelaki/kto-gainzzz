@@ -1,51 +1,51 @@
 {
-	"name": "kto-gainzzz",
-	"version": "1.0.0",
-	"description": "Application for keeping track of your workout sessions (Sets, Reps and Weights).",
-	"homepage": "https://github.com/GeorgeKandelaki/kto-gainzzz#readme",
-	"bugs": {
-		"url": "https://github.com/GeorgeKandelaki/kto-gainzzz/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/GeorgeKandelaki/kto-gainzzz.git"
-	},
-	"license": "ISC",
-	"author": "George Kandelaki",
-	"type": "commonjs",
-	"main": "app.js",
-	"scripts": {
-		"start:server": "nodemon server.js",
-		"start:server:prod": "NODE_ENV=production nodemon server.js",
-		"watch:sass": "sass --watch /public/main.scss /css/style.css",
-		"parcel:watch": "parcel watch",
-		"parcel:build": "parcel build"
-	},
-	"dependencies": {
-		"bcrypt": "^5.1.1",
-		"compression": "^1.8.0",
-		"cookie-parser": "^1.4.7",
-		"cors": "^2.8.5",
-		"crypto": "^1.0.1",
-		"dotenv": "^16.5.0",
-		"express": "^5.1.0",
-		"express-mongo-sanitize": "^2.2.0",
-		"express-rate-limit": "^7.5.0",
-		"helmet": "^8.1.0",
-		"hpp": "^0.2.3",
-		"jsonwebtoken": "^9.0.2",
-		"mongoose": "^8.14.1",
-		"multer": "^2.0.1",
-		"nodemon": "^3.1.10",
-		"pug": "^3.0.3",
-		"qs": "^6.14.0",
-		"sharp": "^0.34.2",
-		"validator": "^13.15.0",
-		"xss-clean": "^0.1.4"
-	},
-	"devDependencies": {
-		"eslint": "^9.26.0",
-		"parcel": "^2.14.4",
-		"sass": "^1.87.0"
-	}
+    "name": "kto-gainzzz",
+    "version": "1.0.0",
+    "description": "Application for keeping track of your workout sessions (Sets, Reps and Weights).",
+    "homepage": "https://github.com/GeorgeKandelaki/kto-gainzzz#readme",
+    "bugs": {
+        "url": "https://github.com/GeorgeKandelaki/kto-gainzzz/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GeorgeKandelaki/kto-gainzzz.git"
+    },
+    "license": "ISC",
+    "author": "George Kandelaki",
+    "type": "commonjs",
+    "main": "app.js",
+    "scripts": {
+        "start:server": "nodemon server.js",
+        "start:server:prod": "NODE_ENV=production nodemon server.js",
+        "watch:sass": "sass --watch /public/main.scss /css/style.css",
+        "parcel:watch": "parcel watch",
+        "parcel:build": "parcel build"
+    },
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "compression": "^1.8.0",
+        "cookie-parser": "^1.4.7",
+        "cors": "^2.8.5",
+        "crypto": "^1.0.1",
+        "dotenv": "^16.5.0",
+        "express": "^5.1.0",
+        "express-mongo-sanitize": "^2.2.0",
+        "express-rate-limit": "^7.5.0",
+        "helmet": "^8.1.0",
+        "hpp": "^0.2.3",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^8.14.1",
+        "multer": "^2.0.1",
+        "nodemon": "^3.1.10",
+        "pug": "^3.0.3",
+        "qs": "^6.14.0",
+        "sharp": "^0.34.2",
+        "validator": "^13.15.0",
+        "xss-clean": "^0.1.4"
+    },
+    "devDependencies": {
+        "eslint": "^9.26.0",
+        "parcel": "^2.14.4",
+        "sass": "^1.87.0"
+    }
 }
