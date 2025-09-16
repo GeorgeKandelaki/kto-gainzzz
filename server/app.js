@@ -23,22 +23,22 @@ const app = express();
 // app.enable("trust proxy");
 
 // Implement CORS
-const allowedOrigins = ["http://localhost:3000", "http://95.104.13.159:3000"];
+const allowedOrigins = ["http://localhost:3000", "http://95.104.13.159:3000", "https://kto-gainzzz.onrender.com/"];
 app.use(
-	cors({
-		origin: function (origin, callback) {
-			try {
-				if (!origin) return callback(null, true);
-				if (allowedOrigins.includes(origin.toLowerCase())) {
-					return callback(null, true);
-				}
-				callback(new Error("Not allowed by CORS"));
-			} catch (err) {
-				callback(err);
-			}
-		},
-		credentials: true,
-	})
+    cors({
+        origin: function (origin, callback) {
+            try {
+                if (!origin) return callback(null, true);
+                if (allowedOrigins.includes(origin.toLowerCase())) {
+                    return callback(null, true);
+                }
+                callback(new Error("Not allowed by CORS"));
+            } catch (err) {
+                callback(err);
+            }
+        },
+        credentials: true,
+    })
 );
 
 app.set("view engine", "pug");
@@ -55,9 +55,9 @@ app.set("query parser", (str) => qs.parse(str));
 
 // Limit Requests from same API
 const limiter = rateLimit({
-	max: 100,
-	windowMs: 60 * 60 * 1000,
-	message: "Too many requests from this IP, please try again in an hour!",
+    max: 100,
+    windowMs: 60 * 60 * 1000,
+    message: "Too many requests from this IP, please try again in an hour!",
 });
 // app.use("/api", limiter);
 
