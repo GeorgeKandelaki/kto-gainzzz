@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
+import { createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import error from "./../components/Error";
 
 const UserContext = createContext();
