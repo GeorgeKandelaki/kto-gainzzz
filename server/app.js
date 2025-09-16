@@ -23,7 +23,7 @@ const app = express();
 // app.enable("trust proxy");
 
 // Implement CORS
-const allowedOrigins = ["http://localhost:3000", "http://95.104.13.159:3000", "https://kto-gainzzz.onrender.com/"];
+const allowedOrigins = ["http://localhost:3000", "https://kto-gainzzz.onrender.com"];
 app.use(
     cors({
         origin: function (origin, callback) {
